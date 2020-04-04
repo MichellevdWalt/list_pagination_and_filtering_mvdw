@@ -7,7 +7,7 @@ let list = document.querySelectorAll('ul li');
 let displayNumber = 10;
 let pageNumber = 0;
 let counter = 0;
-
+let results;
 /**
 *Function to assign a page number to each list item as its id.
 *@param {number}display - max element number to display. (10 for 1st page 20 for second etc) 
@@ -103,7 +103,7 @@ function clearText() {
     
 }
 
-let results;
+
 
 
 
@@ -176,6 +176,7 @@ function searchButtonClick(){
         });
     
      searchButton.addEventListener("click", (f)=>{
+         paginationButtons = document.querySelectorAll('.pagination li a');
          if (results.length === 0){
          displayNoResults.textContent = "\n\ Sorry, no results found";
          for (var j = 0; j < paginationButtons.length; j+= 1) {
