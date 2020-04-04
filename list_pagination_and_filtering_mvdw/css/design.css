@@ -23,6 +23,13 @@ body{
     color: #555;
   }
 
+.paragraph{
+        color: #888;
+        font-size: 14px;
+        text-decoration: none;
+        text-transform: none;
+      }
+
 .page-header .search-div{
     float: right;
   }
