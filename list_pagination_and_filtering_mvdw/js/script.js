@@ -105,7 +105,9 @@ function clearText() {
 
 
 
-
+/**
+*Function to create new pagination (links/buttons) based on search results
+*/
 
 function searchPagination(){
      const paginationLinkList = document.querySelectorAll('.pagination li a');
@@ -142,7 +144,7 @@ showPageSearch();
 }
         
 /**
-*Function to hide or display list elements according to input value after clicking the submit button.
+*Function to hide or display list elements and pagination buttons according to input value after clicking the submit button.
 *for loop functions to loop through the entire array in list to find student names that includes the search input value. Uses @param {number} - counter which reflects the length of the array as calculated in the assignPage function.
 */
 function searchButtonClick(){
@@ -156,37 +158,39 @@ function searchButtonClick(){
      displayNoResults.classList.add("paragraph");
      displayNoResults.classList.add("no-results");
         searchButton.addEventListener("click", (e)=>{
-        results = "";
-        let input = searchInput.value;
-        for (var i = 0; i<counter; i +=1){
-            if(studentName[i].textContent.includes(input)){
-                list[i].style.display = ""
-                studentName[i].classList.add("results");
-            } else{
-                list[i].style.display = "none";
-                if (studentName[i].className.includes("results")){
-                    studentName[i].classList.remove("results");
-                }        
-    }
-             
-    clearText(); 
-        }
+            results = "";
+            let input = searchInput.value;
+            for (var i = 0; i<counter; i +=1){
+                if(studentName[i].textContent.includes(input)){
+                    list[i].style.display = ""
+                    studentName[i].classList.add("results");
+                } else{
+                    list[i].style.display = "none";
+                    if (studentName[i].className.includes("results")){
+                        studentName[i].classList.remove("results");
+                    }        
+                }    
+             clearText(); 
+            }
         results = document.querySelectorAll('.results');
             
         });
     
-     searchButton.addEventListener("click", (f)=>{
-         paginationButtons = document.querySelectorAll('.pagination li a');
-         if (results.length === 0){
-         displayNoResults.textContent = "\n\ Sorry, no results found";
-         for (var j = 0; j < paginationButtons.length; j+= 1) {
-         paginationButtons[j].style.display = "none";
-        }
+/*EventListener to display no results found and to hide pagination buttons with no results */
+    
+        searchButton.addEventListener("click", (f)=>{
+            paginationButtons = document.querySelectorAll('.pagination li a');
+            if (results.length === 0){
+                displayNoResults.textContent = "\n\ Sorry, no results found";
+                for (var j = 0; j < paginationButtons.length; j+= 1) {
+                    paginationButtons[j].style.display = "none";
+                }
         
-        } else if (results.length > 0){
-        let displayNoResults = document.querySelector(".no-results");
-        displayNoResults.textContent = " ";
-        searchPagination();}
+            }else if (results.length > 0) {
+                let displayNoResults = document.querySelector(".no-results");
+                displayNoResults.textContent = " ";
+                searchPagination();
+            }
         });
 }
     
